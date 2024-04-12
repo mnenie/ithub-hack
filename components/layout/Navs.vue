@@ -15,15 +15,15 @@ const changeActiveTab = (id: number) => {
 };
 
 const initializeActiveMenuItem = () => {
-    const activeMenuItemId = sessionStorage.getItem('activeMenuId');
-    if (activeMenuItemId) {
-      changeActiveTab(parseInt(activeMenuItemId));
-    }
-  };
+  const activeMenuItemId = sessionStorage.getItem('activeMenuId');
+  if (activeMenuItemId) {
+    changeActiveTab(parseInt(activeMenuItemId));
+  }
+};
 
-  onMounted(() => {
-    initializeActiveMenuItem();
-  });
+onMounted(() => {
+  initializeActiveMenuItem();
+});
 </script>
 
 <template>
