@@ -1,5 +1,5 @@
 <template>
-    <div>
-        <HomeHello />
-    </div>
+        <div>
+            fdfdsf
+        </div>
 </template>
