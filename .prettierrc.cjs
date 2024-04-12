@@ -1,9 +1,7 @@
-const prettier = require('prettier');
+const { prettier } = require('@mnenie/prettier');
 
-module.exports = async () => {
-  const options = await prettier.resolveConfig(__filename);
-  return {
-    ...options,
-    plugins: ['prettier-plugin-tailwindcss']
-  };
+/** @type {import('prettier').Config} */
+module.exports = {
+  ...prettier,
+  plugins: ['prettier-plugin-tailwindcss']
 };
