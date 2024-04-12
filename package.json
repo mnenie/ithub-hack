@@ -10,8 +10,22 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
+    "@radix-icons/vue": "^1.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "nuxt": "^3.11.2",
+    "pinia": "^2.1.7",
+    "radix-vue": "^1.7.0",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@mnenie/prettier": "^1.0.4",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "shadcn-nuxt": "^0.10.2",
+    "typescript": "^5.4.5"
   }
 }
