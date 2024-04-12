@@ -1,5 +1,5 @@
 <template>
-        <div>
-            fdfdsf
-        </div>
+    <div>
+        fdfdsf
+    </div>
 </template>
