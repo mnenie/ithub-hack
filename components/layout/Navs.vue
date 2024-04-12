@@ -13,19 +13,7 @@ const changeActiveTab = (id: number) => {
       navigateTo(btn.route);
     }
   });
-  sessionStorage.setItem('activeMenuId', String(id));
 };
-
-const initializeActiveMenuItem = () => {
-  const activeMenuItemId = sessionStorage.getItem('activeMenuId');
-  if (activeMenuItemId) {
-    changeActiveTab(parseInt(activeMenuItemId));
-  }
-};
-
-onMounted(() => {
-  initializeActiveMenuItem();
-});
 </script>
 
 <template>
