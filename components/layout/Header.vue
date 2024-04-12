@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import {GithubIcon} from 'lucide-vue-next'
 
 const links = reactive([
   { id: 0, name: 'О проекте', url: 'https://github.com/mnenie/gagarinhack' },
