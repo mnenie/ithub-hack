@@ -6,7 +6,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: 'Registration | Notium'
+  title: 'Регистрация на сервисе'
 });
 </script>
 
