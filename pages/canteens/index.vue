@@ -1,5 +1,5 @@
 <template>
   <div> 
-    canteens
+    <CanteensMain />
   </div>
 </template>

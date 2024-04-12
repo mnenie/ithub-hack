@@ -3,11 +3,11 @@ import { getIamToken } from '~/server/utils/auth-gpt';
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
 
-  const { text, dists, most_similar_index, most_similar_doc } = await readBody(event);
+  const { text, dists, most_similar_index, most_similar_course } = await readBody(event);
 
   const token = await getIamToken(config);
 
-  const similarityThreshold = 0.6;
+  const similarityThreshold = 0.65;
   if (dists[most_similar_index] < similarityThreshold) {
     const response_completion = await fetch(
       'https://llm.api.cloud.yandex.net/foundationModels/v1/completion',
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
           messages: [
             {
               role: 'system',
-              text: `Ты друг студента для приложения вузовского сайта. Ты помогаешь студентам найти ответы на вузовские вопросы. Также ты обладаешь информацией о существующих курсах, столовых и вопросах. Выводи всегда типо: У нас есть такой курс/столовая/вопрос в зависимости от, того что в запросе, с названием: ${most_similar_doc.title}, и он содержит, ${most_similar_doc.content}.Есть ли у вас еще вопросы?, ну и представь пользователю возможно какие то твои советы`
+              text: `Ты друг студента, его помощник и общайся как друг в сервисе для вуза. Ты помогаешь выбрать студенту подходящий курс из доступных, основываясь на его вопросе. Выводи всегда типо: У нас есть для вас такой курс с названием: ${most_similar_course.title}, он включает:  ${most_similar_course.content}, и не надо тут придумывать того чего нет в курсе. Есть ли у вас еще вопросы?, ну и предоставь пользователю возможно как бы ему справиться со своей проблемой, общайся как друг`
             },
             {
               role: 'user',
@@ -42,6 +42,6 @@ export default defineEventHandler(async (event) => {
     const response_completionData = await response_completion.json();
     return response_completionData.result.alternatives[0].message;
   } else {
-    return { role: 'assistant', text: 'Подходящего ответа я вам дать не могу, потому что такой информацией я не располагаю :/' };
+    return { role: 'assistant', text: 'Подходящей заметки не найдено, запишите свои идеи в Notium!' };
   }
 });

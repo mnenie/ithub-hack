@@ -3,17 +3,15 @@ import { cosineDistance, getRefreshToken } from '~/server/utils';
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
 
-  const { text, docs } = await readBody(event);
+  const { text, courses } = await readBody(event);
 
   const token = await getRefreshToken(config)
 
   const doc_uri = `emb://${config.YANDEX_FOLDER_ID}/text-search-doc/latest`;
   const query_uri = `emb://${config.YANDEX_FOLDER_ID}/text-search-query/latest`;
 
-  const courses = (docs as Docs).courses.map(course => course.content);
-  const canteens = (docs as Docs).canteens.map(canteen => canteen.content);
-
-  const doc_texts = [...courses, ...canteens];
+  let doc_texts: string[] = [];
+  doc_texts = (courses as Course[]).map((course) => course.content);
 
   const docs_embedding = [];
   for (const doc_text of doc_texts) {
@@ -54,11 +52,11 @@ export default defineEventHandler(async (event) => {
   const dists = docs_embedding.map((doc_embedding) => cosineDistance(query_embedding, doc_embedding));
 
   const most_similar_index = dists.indexOf(Math.min(...dists));
-  const most_similar_doc = docs[most_similar_index];
+  const most_similar_course = courses[most_similar_index];
 
   return {
     dists: dists,
     index: most_similar_index,
-    note: most_similar_doc,
+    course: most_similar_course,
   };
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full">
+  <div class="relative h-screen w-full">
     <LayoutContent />
     <div class="px-10">
       <slot />

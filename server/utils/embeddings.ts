@@ -9,6 +9,6 @@ export const dotProduct = (vector1: number[], vector2: number[]): number => {
 export const cosineDistance = (vector1: number[], vector2: number[]): number => {
   const dot = dotProduct(vector1, vector2);
   const length1 = vectorLength(vector1);
-  const length2 = vectorLength(vector2)
-  return 1 - dot / (length1 * length2)
+  const length2 = vectorLength(vector2);
+  return 1 - dot / (length1 * length2);
 };

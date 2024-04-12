@@ -1,3 +1,8 @@
+type ChatCompletionRequestMessage = {
+  role: 'user' | 'assistant';
+  text: string;
+}
+
 type Course = {
   id: string;
   photoURL: string;
@@ -21,5 +26,4 @@ type Canteens = {
 
 type Docs = {
   courses: Array<Course>;
-  canteens: Array<Canteens>;
 }

@@ -26,9 +26,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
       </UiButton>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-[200px]">
-      <DropdownMenuLabel
-        class="flex w-full items-center justify-between overflow-hidden text-ellipsis whitespace-nowrap"
-      >
+      <DropdownMenuLabel class="flex w-full items-center justify-between overflow-hidden text-ellipsis whitespace-nowrap">
         1alexpeshkov@gmail.com
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
@@ -41,5 +39,3 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
-
-<style scoped></style>
