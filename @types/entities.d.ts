@@ -1,7 +1,7 @@
 type ChatCompletionRequestMessage = {
   role: 'user' | 'assistant';
   text: string;
-}
+};
 
 type Course = {
   id: string;
@@ -12,18 +12,18 @@ type Course = {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
-}
+};
 
 type Canteens = {
-  id: string
+  id: string;
   name: string;
   content: string;
   location: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
-}
+};
 
 type Docs = {
   courses: Array<Course>;
-}
+};

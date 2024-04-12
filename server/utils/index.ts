@@ -1,2 +1,2 @@
-export * from './auth-gpt'
-export * from './embeddings'
+export * from './auth-gpt';
+export * from './embeddings';

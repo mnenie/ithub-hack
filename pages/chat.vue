@@ -1,5 +1,3 @@
 <template>
-  <div>
-    chat
-  </div>
+  <div>chat</div>
 </template>

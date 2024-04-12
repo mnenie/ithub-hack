@@ -1,31 +1,29 @@
 <script setup lang="ts">
-import { type HTMLAttributes, computed } from 'vue'
-import {
-  DropdownMenuSubTrigger,
-  type DropdownMenuSubTriggerProps,
-  useForwardProps,
-} from 'radix-vue'
-import { ChevronRightIcon } from '@radix-icons/vue'
-import { cn } from '@/lib/utils'
+import { type HTMLAttributes, computed } from 'vue';
+import { DropdownMenuSubTrigger, type DropdownMenuSubTriggerProps, useForwardProps } from 'radix-vue';
+import { ChevronRightIcon } from '@radix-icons/vue';
+import { cn } from '@/lib/utils';
 
-const props = defineProps<DropdownMenuSubTriggerProps & { class?: HTMLAttributes['class'] }>()
+const props = defineProps<DropdownMenuSubTriggerProps & { class?: HTMLAttributes['class'] }>();
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const { class: _, ...delegated } = props;
 
-  return delegated
-})
+  return delegated;
+});
 
-const forwardedProps = useForwardProps(delegatedProps)
+const forwardedProps = useForwardProps(delegatedProps);
 </script>
 
 <template>
   <DropdownMenuSubTrigger
     v-bind="forwardedProps"
-    :class="cn(
-      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-zinc-100 data-[state=open]:bg-zinc-100 dark:focus:bg-zinc-800 dark:data-[state=open]:bg-zinc-800',
-      props.class,
-    )"
+    :class="
+      cn(
+        'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-zinc-100 data-[state=open]:bg-zinc-100 dark:focus:bg-zinc-800 dark:data-[state=open]:bg-zinc-800',
+        props.class
+      )
+    "
   >
     <slot />
     <ChevronRightIcon class="ml-auto h-4 w-4" />

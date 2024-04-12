@@ -15,7 +15,7 @@ export default function useConversation(courses: Course[], text: Ref<string>) {
       });
       return data.value;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
 

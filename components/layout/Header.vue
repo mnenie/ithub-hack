@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 
 const links = reactive([
   { id: 0, name: 'О проекте', url: 'https://github.com/mnenie/gagarinhack' },
@@ -15,16 +15,18 @@ const links = reactive([
       <div class="left-section">
         <FeaturesUserAvatar />
         <nav :class="cn('flex items-center space-x-4 lg:space-x-6', $attrs.class ?? '')">
-          <span v-for="link in links" :key="link.id" @click="redirect(link.url)"
-          class="cursor-pointer text-sm font-medium text-zinc-950/80 transition-colors hover:text-zinc-950/90">
-          {{ link.name }}
-        </span>
+          <span
+            v-for="link in links"
+            :key="link.id"
+            @click="redirect(link.url)"
+            class="cursor-pointer text-sm font-medium text-zinc-950/80 transition-colors hover:text-zinc-950/90"
+          >
+            {{ link.name }}
+          </span>
         </nav>
       </div>
       <div class="right-section">
-        <UiButton>
-          Перейти к ithub.ru
-        </UiButton>
+        <UiButton> Перейти к ithub.ru </UiButton>
       </div>
     </div>
   </header>

@@ -2,7 +2,7 @@
 import { ChevronLeft } from 'lucide-vue-next';
 
 definePageMeta({
-  layout: 'auth',
+  layout: 'auth'
 });
 
 useSeoMeta({
@@ -11,8 +11,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="container h-full relative">
-    <div @click="navigateTo(HOME_ROUTE)" class="mt-20 ml-52 absolute rounded-md flex items-center gap-1 cursor-pointer">
+  <div class="container relative h-full">
+    <div
+      @click="navigateTo(HOME_ROUTE)"
+      class="absolute ml-52 mt-20 flex cursor-pointer items-center gap-1 rounded-md"
+    >
       <ChevronLeft :size="20" />
       <span class="text-sm font-medium">Back</span>
     </div>

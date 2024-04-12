@@ -15,7 +15,7 @@ export async function getIamToken(config: YandexConfig): Promise<string> {
   });
 
   const { iamToken } = await iamTokenResponse.json();
-  
+
   return iamToken;
 }
 

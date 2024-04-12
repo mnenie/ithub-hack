@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Circle } from 'lucide-vue-next';
 
-const { canteens } = storeToRefs(useCanteensStore())
+const { canteens } = storeToRefs(useCanteensStore());
 </script>
-
 
 <template>
   <div class="box">

@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   const { text, courses } = await readBody(event);
 
-  const token = await getRefreshToken(config)
+  const token = await getRefreshToken(config);
 
   const doc_uri = `emb://${config.YANDEX_FOLDER_ID}/text-search-doc/latest`;
   const query_uri = `emb://${config.YANDEX_FOLDER_ID}/text-search-query/latest`;
@@ -57,6 +57,6 @@ export default defineEventHandler(async (event) => {
   return {
     dists: dists,
     index: most_similar_index,
-    course: most_similar_course,
+    course: most_similar_course
   };
 });

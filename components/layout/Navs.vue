@@ -3,7 +3,7 @@ const tabs = ref([
   { id: 0, active: true, name: 'Курсы', route: HOME_ROUTE },
   { id: 1, active: false, name: 'Столовые', route: CANTEENS_ROUTE },
   { id: 2, active: false, name: 'Вузовский чат', route: CHAT_ROUTE },
-  { id: 3, active: false, name: 'IThub Ai', route: AI_ROUTE },
+  { id: 3, active: false, name: 'IThub Ai', route: AI_ROUTE }
 ]);
 
 const changeActiveTab = (id: number) => {
@@ -21,7 +21,12 @@ const changeActiveTab = (id: number) => {
     <h1 class="dashboard-title">Навигационная панель</h1>
     <div class="box">
       <div class="buttons-container">
-        <button v-for="tab in tabs" :key="tab.id" :class="{ active_tab: tab.active }" @click="changeActiveTab(tab.id)">
+        <button
+          v-for="tab in tabs"
+          :key="tab.id"
+          :class="{ active_tab: tab.active }"
+          @click="changeActiveTab(tab.id)"
+        >
           {{ tab.name }}
         </button>
       </div>
