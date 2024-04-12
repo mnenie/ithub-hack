@@ -1,5 +1,5 @@
 <template>
         <div>
-            fdfdsf
+            <HomeMain />
         </div>
 </template>
