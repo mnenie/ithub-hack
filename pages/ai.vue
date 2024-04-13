@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { marked } from 'marked';
+
 useSeoMeta({
   title: 'Build-in AI для сервиса IThub'
 });
 
 const model = ref('');
+const userMessage: { role: "user"; text: string; } = { role: "user", text: "" };
 
 const messages = ref<ChatCompletionRequestMessage[]>([]);
 
@@ -14,9 +17,11 @@ const { events } = storeToRefs(useEventsStore());
 const { usePostConversations } = useConversations(courses.value, canteens.value, events.value, model);
 
 const handleSubmit = async () => {
+  userMessage.text = model.value;
+  messages.value.push(userMessage); 
   const response = await usePostConversations();
-  model.value = ''
   messages.value.push(response);
+  model.value = ''
 };
 </script>
 
@@ -27,15 +32,12 @@ const handleSubmit = async () => {
         <div
           v-for="(message, index) in messages"
           :key="index"
-          class="flex items-center gap-4 mb-8"
-          :class="[message.role === 'user' ? 'justify-start' : 'justify-end']"
+          class="mb-8 flex items-center gap-4"
         >
           <UiAvatar>
-            <UiAvatarFallback>{{ message.role === 'user' ? '1a' : 'ai' }}</UiAvatarFallback>
+            <UiAvatarFallback>{{ message && message.role === 'user' ? '1a' : 'ai' }}</UiAvatarFallback>
           </UiAvatar>
-          <div>
-            {{ message.text }}
-          </div>
+          <div v-html="message && message.text"></div>
         </div>
         <AiMessage @on-submit="handleSubmit" v-model="model" />
       </div>

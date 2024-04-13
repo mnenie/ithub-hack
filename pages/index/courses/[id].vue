@@ -1,52 +1,31 @@
 <script setup lang="ts">
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { marked } from 'marked';
+const route = useRoute();
 
-const { courses } = storeToRefs(useCoursesStore());
+const courseStore = useCoursesStore();
+const { course } = storeToRefs(courseStore);
 
+onMounted(() => {
+  courseStore.getCourseById(route.params.id as string);
+});
+
+const markdownToHtml = computed(() => {
+  if(course.value.content && course.value){
+    return marked.parse(course.value.content);
+  }
+});
 </script>
 <template>
   <div class="course-page">
-    <div class="top-part">
-      <div class="course-banner">
-        <img src="/images/gaming.jpg" class="gaiming" />
-      </div>
-
-      <div class="course-details">
+    <div class="top-part mt-10">
+      <div :style="{ backgroundImage: `url(${course.photoURL})` }" class="banner"></div>
+      <div class="course-details flex items-start space-x-6 justify-between">
         <div class="description">
-          <h2>Описание курса</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus commodi eveniet, officiis
-            corrupti sint iure rerum modi fugit, earum blanditiis explicabo quae aliquid labore voluptatibus
-            at dolores tenetur eius, nobis esse numquam sit molestias amet. Magni similique dolor rerum
-            voluptas dicta eos cum odit, laborum, qui enim tempora? Maxime, quisquam.
-          </p>
+          <h2 class="text-xl font-bold">{{ course.title }}</h2>
+          <div v-html="markdownToHtml"></div>
         </div>
-
-        <div class="info">
-          <h2>Информация о курсе</h2>
-          <ul>
-            <li><strong>Стоимость:</strong> $99</li>
-            <li><strong>Количество довольных клиентов:</strong> 1000+</li>
-            <li><strong>Продолжительность:</strong> 10 часов</li>
-            <li><strong>Ключевые темы:</strong> Тема 1, Тема 2, Тема 3, ...</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="courses-section">
-      <h2>Наши другие курсы</h2>
-      <div class="box">
-        <div class="courses-container">
-          <Card class="card w-full" v-for="course in courses" :key="course.id">
-            <div class="photo">
-              <img class="photo-img" :src="course.photoURL" alt="" />
-            </div>
-            <CardHeader>
-              <CardTitle>{{ course.title }}</CardTitle>
-              <CardDescription>{{ course.content }}</CardDescription>
-            </CardHeader>
-          </Card>
+        <div class="w-2/3">
+           <img :src="course.roadmapphotoURL" />
         </div>
       </div>
     </div>
@@ -54,24 +33,38 @@ const { courses } = storeToRefs(useCoursesStore());
 </template>
 
 <style scoped>
-.course-page {
-}
-
-.course-banner {
-}
-
 .top-part {
   display: flex;
+  flex-direction: column;
 }
 
-.gaiming {
-  height: 600px;
-  width: 1000px;
+.banner {
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-size: cover;
+  position: relative;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: top -250px right 0;
+}
+.banner::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.001);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .course-details {
-  padding: 20px;
-  width: 80%;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .description {
@@ -117,64 +110,5 @@ li {
 
 .course img {
   max-width: 100%;
-}
-
-.box {
-  background-color: #fff;
-
-  margin-top: 30px;
-  text-align: center;
-  max-width: fit-content;
-  border-radius: 10px;
-}
-
-.courses-title {
-  text-align: left;
-  margin-bottom: 20px;
-}
-
-.courses-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.photo {
-  width: 100%;
-  height: 250px;
-  position: relative;
-  border-radius: 10px 10px 0 0;
-}
-
-.photo-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  border-radius: 10px 10px 0 0;
-}
-
-.card {
-  cursor: pointer;
-  transition: 0.15s ease-in;
-}
-
-.card:hover {
-  transform: scale(1.02);
-}
-
-@media screen and (max-width: 1665px) {
-  .courses-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .photo {
-    height: 200px;
-  }
 }
 </style>

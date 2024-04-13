@@ -10,22 +10,23 @@ interface DateParams {
 }
 
 interface Course extends DateParams {
-  id: string;
+  _id: string;
   photoURL: string;
   title: string;
   content: string;
+  description: string;
   roadmapphotoURL?: string;
 }
 
 interface Canteen extends DateParams {
-  id: string;
+  _id: string;
   name: string;
   content: string;
   location: string;
 }
 
 interface EventList extends DateParams {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   img: string;

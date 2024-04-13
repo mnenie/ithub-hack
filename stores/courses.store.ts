@@ -1,26 +1,32 @@
-import useCourses from "~/composables/useCourses";
+import CourseService from '~/services/CourseService';
 
 export const useCoursesStore = defineStore('courses', () => {
-  const courses = ref<Course[]>([])
+  const courses = ref<Course[]>([]);
+  const course = ref({} as Course);
 
-  const {getCourses, getCourseById} = useCourses()
-
-  const getCoursesStore = async () => {
-    try{
-      const creds = await getCourses()
-      courses.value = creds
-      return courses.value
+  const getCourses = async () => {
+    try {
+      const response = await CourseService.getAllCourses();
+      courses.value = response.data;
+      return courses.value;
+    } catch (err) {
+      console.log(err);
     }
-    catch(err) {
-      console.log(err)
-    }
-  }
+  };
 
-  onBeforeMount(async () => {
-    await getCoursesStore()
-  })
+  const getCourseById = async (id: string) => {
+    const response = await CourseService.getCourseById(id);
+    course.value = response.data;
+  };
+
+  onMounted(async () => {
+    await getCourses();
+  });
 
   return {
-    courses, getCoursesStore
+    courses,
+    course,
+    getCourses,
+    getCourseById
   };
 });

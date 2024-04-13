@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-const { courses } = storeToRefs(useCoursesStore());
+const courseStore = useCoursesStore()
+const { courses } = storeToRefs(courseStore);
 </script>
 
 <template>
   <div class="box">
     <div class="courses-container">
-      <Card class="card w-full" v-for="course in courses" :key="course.id">
+      <Card class="card w-full" v-for="course in courses" :key="course._id" @click="navigateTo(`/courses/${course._id}`)">
         <div class="photo">
           <img class="photo-img" :src="course.photoURL" alt="" />
         </div>
         <CardHeader>
           <CardTitle>{{ course.title }}</CardTitle>
-          <CardDescription>{{ course.content }}</CardDescription>
+          <CardDescription class="text-ellipsis">{{ course.description }}</CardDescription>
         </CardHeader>
       </Card>
     </div>
@@ -77,7 +78,7 @@ const { courses } = storeToRefs(useCoursesStore());
   }
 
   .photo {
-    height: 200px;
+    height: 180px;
   }
 }
 </style>
