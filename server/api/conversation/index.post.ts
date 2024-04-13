@@ -3,7 +3,7 @@ import { getIamToken } from '~/server/utils/auth-gpt';
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
 
-  const { text, dists, most_similar_index, most_similar_course } = await readBody(event);
+  const { text, dists, most_similar_index, most_similar_doc } = await readBody(event);
 
   const token = await getIamToken(config);
 
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
           messages: [
             {
               role: 'system',
-              text: `Ты друг студента, его помощник и общайся как друг в сервисе для вуза. Ты помогаешь выбрать студенту подходящий курс из доступных, основываясь на его вопросе. Выводи всегда типо: У нас есть для вас такой курс с названием: ${most_similar_course.title}, он включает:  ${most_similar_course.content}, и не надо тут придумывать того чего нет в курсе. Есть ли у вас еще вопросы?, ну и предоставь пользователю возможно как бы ему справиться со своей проблемой, общайся как друг`
+              text: `Ты друг студента, его помощник и общайся как друг в сервисе для вуза. Ты помогаешь выбрать студенту подходящий курс или столовую или мероприятие из доступных, основываясь на его вопросе. Выводи всегда типо: У нас есть для вас такой курс/мероприятие/столовая, (в зависимоти от вопроса) с названием: ${most_similar_doc.title}, и включает:  ${most_similar_doc.content}, и не надо тут придумывать того чего нет. Есть ли у вас еще вопросы?, ну и предоставь пользователю возможно как бы ему справиться со своей проблемой, общайся как друг`
             },
             {
               role: 'user',

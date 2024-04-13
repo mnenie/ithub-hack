@@ -1,5 +1,5 @@
 export const useCanteensStore = defineStore('canteens', () => {
-  const canteens = ref([
+  const canteens = ref<Canteen[]>([
     {
       id: '1',
       name: 'Столовая № 1',

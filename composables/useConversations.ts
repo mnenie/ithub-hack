@@ -1,5 +1,5 @@
-export default function useConversation(courses: Course[], text: Ref<string>) {
-  const { usePostEmbedding } = useEmbeddings(courses, text);
+export default function useConversation(courses: Course[], canteens: Canteen[], events: EventList[], text: Ref<string>) {
+  const { usePostEmbedding } = useEmbeddings(courses, canteens, events, text);
   const usePostConversations = async () => {
     const embeddings = await usePostEmbedding();
     try {
@@ -10,7 +10,7 @@ export default function useConversation(courses: Course[], text: Ref<string>) {
           dists: embeddings?.dists,
           most_similar_index: embeddings?.index,
           //@ts-ignore
-          most_similar_course: embeddings?.course
+          most_similar_doc: embeddings?.doc
         }
       });
       return data.value;

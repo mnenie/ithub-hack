@@ -17,14 +17,14 @@ interface Course extends DateParams {
   roadmapphotoURL?: string;
 }
 
-interface Canteens extends DateParams {
+interface Canteen extends DateParams {
   id: string;
   name: string;
   content: string;
   location: string;
 }
 
-interface EventsList extends DateParams {
+interface EventList extends DateParams {
   id: string;
   title: string;
   description: string;
@@ -33,4 +33,8 @@ interface EventsList extends DateParams {
 
 type Docs = {
   courses: Array<Course>;
+  canteens: Array<Canteen>;
+  events: Array<EventList>;
 };
+
+type MostSimilarDoc = Course | Canteen | EventList;

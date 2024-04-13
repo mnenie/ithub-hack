@@ -8,8 +8,10 @@ const model = ref('');
 const messages = ref<ChatCompletionRequestMessage[]>([]);
 
 const { courses } = storeToRefs(useCoursesStore());
+const { canteens } = storeToRefs(useCanteensStore());
+const { events } = storeToRefs(useEventsStore());
 
-const { usePostConversations } = useConversations(courses.value, model);
+const { usePostConversations } = useConversations(courses.value, canteens.value, events.value, model);
 
 const handleSubmit = async () => {
   const response = await usePostConversations();

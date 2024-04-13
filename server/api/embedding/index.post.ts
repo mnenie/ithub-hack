@@ -3,7 +3,7 @@ import { cosineDistance, getRefreshToken } from '~/server/utils';
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
 
-  const { text, courses } = await readBody(event);
+  const { text, courses, canteens, events } = await readBody(event);
 
   const token = await getRefreshToken(config);
 
@@ -11,7 +11,12 @@ export default defineEventHandler(async (event) => {
   const query_uri = `emb://${config.YANDEX_FOLDER_ID}/text-search-query/latest`;
 
   let doc_texts: string[] = [];
-  doc_texts = (courses as Course[]).map((course) => course.content);
+  
+  doc_texts = [
+    ...(courses as Course[]).map((course) => course.content),
+    ...(canteens as Canteen[]).map((canteen) => canteen.content),
+    ...(events as EventList[]).map((event) => event.description)
+  ];
 
   const docs_embedding = [];
   for (const doc_text of doc_texts) {
@@ -52,11 +57,19 @@ export default defineEventHandler(async (event) => {
   const dists = docs_embedding.map((doc_embedding) => cosineDistance(query_embedding, doc_embedding));
 
   const most_similar_index = dists.indexOf(Math.min(...dists));
-  const most_similar_course = courses[most_similar_index];
+  let most_similar_doc;
+
+  if (most_similar_index < courses.length) {
+    most_similar_doc = courses[most_similar_index];
+  } else if (most_similar_index < courses.length + canteens.length) {
+    most_similar_doc = canteens[most_similar_index - courses.length];
+  } else {
+    most_similar_doc = events[most_similar_index - courses.length - canteens.length];
+  }
 
   return {
     dists: dists,
     index: most_similar_index,
-    course: most_similar_course
+    doc: most_similar_doc
   };
 });

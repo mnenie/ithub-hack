@@ -1,5 +1,5 @@
 export const useCoursesStore = defineStore('courses', () => {
-  const courses = ref([
+  const courses = ref<Course[]>([
     {
       id: '1',
       photoURL: '/images/moon.png',
