@@ -4,7 +4,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: 'Регистрация на сервисе'
+  title: 'Registration | IThub'
 });
 </script>
 

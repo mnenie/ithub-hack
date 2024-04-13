@@ -4,7 +4,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: 'Войти на сервис'
+  title: 'Login | IThub'
 });
 </script>
 

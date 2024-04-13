@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { marked } from 'marked';
-
 useSeoMeta({
   title: 'Build-in AI для сервиса IThub'
 });
