@@ -1,3 +1,3 @@
 <template>
-  <div>chat</div>
+  <img src="/images/chat/chat.png" class="w-screen mt-10" />
 </template>

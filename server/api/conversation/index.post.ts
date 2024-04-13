@@ -42,6 +42,6 @@ export default defineEventHandler(async (event) => {
     const response_completionData = await response_completion.json();
     return response_completionData.result.alternatives[0].message;
   } else {
-    return { role: 'assistant', text: 'Подходящей заметки не найдено, запишите свои идеи в Notium!' };
+    return { role: 'assistant', text: 'Подходящего ответа для вас не найдено, попробуйте снова' };
   }
 });

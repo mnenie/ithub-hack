@@ -9,7 +9,7 @@ export const useCoursesStore = defineStore('courses', () => {
     {
       id: '2',
       photoURL: '/images/gaming.jpg',
-      title: 'Геймификация в онлайн-образовани',
+      title: 'Геймификация в онлайн-образовании',
       content: 'Статья о геймификация в онлайн-образовании'
     },
     {

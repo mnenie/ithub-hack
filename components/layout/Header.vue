@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
+import {redirect} from '~/helpers/helperRedirect'
 
 const links = reactive([
   { id: 0, name: 'О проекте', url: 'https://github.com/mnenie/gagarinhack' },
-  { id: 1, name: 'Поддержка', url: 't.me/youngjuicycashrussia' }
+  { id: 1, name: 'Поддержка', url: 'https://t.me/youngjuicycashrussia' }
 ]);
 </script>
 
@@ -26,7 +27,7 @@ const links = reactive([
         </nav>
       </div>
       <div class="right-section">
-        <UiButton> Перейти к ithub.ru </UiButton>
+        <UiButton @click="redirect('https://ithub.ru/')"> Перейти к ithub.ru </UiButton>
       </div>
     </div>
   </header>
