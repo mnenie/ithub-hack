@@ -4,7 +4,7 @@ const tabs = ref([
   { id: 1, active: false, name: 'Мероприятия', route: EVENTS_ROUTE },
   { id: 2, active: false, name: 'Столовые', route: CANTEENS_ROUTE },
   { id: 3, active: false, name: 'Вузовский чат', route: CHAT_ROUTE },
-  { id: 4, active: false, name: 'IThub Ai', route: AI_ROUTE }
+  { id: 4, active: false, name: 'Build-in Ai', route: AI_ROUTE }
 ]);
 
 const changeActiveTab = (id: number) => {

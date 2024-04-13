@@ -21,7 +21,7 @@ const model = defineModel<string>();
       </UiButton>
     </form>
     <span class="py-1 text-sm text-zinc-400">
-      Встроенный ИИ от IThub поможет вам в ваших вопросах и предпочтениях
+      Встроенный ИИ поможет вам в ваших вопросах и предпочтениях
     </span>
   </div>
 </template>
