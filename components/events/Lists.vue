@@ -9,7 +9,7 @@ const { events } = storeToRefs(useEventsStore());
       <div class="relative h-full w-72 rounded-l-lg">
         <img :src="i.img" class="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-l-lg" />
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col justify-between h-full">
         <UiCardHeader>
           <UiCardTitle>{{ i.title }}</UiCardTitle>
           <UiCardDescription>{{ i.description }}</UiCardDescription>
