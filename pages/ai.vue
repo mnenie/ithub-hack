@@ -15,6 +15,7 @@ const { usePostConversations } = useConversations(courses.value, canteens.value,
 
 const handleSubmit = async () => {
   const response = await usePostConversations();
+  model.value = ''
   messages.value.push(response);
 };
 </script>

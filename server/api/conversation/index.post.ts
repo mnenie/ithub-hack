@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const token = await getIamToken(config);
 
-  const similarityThreshold = 0.65;
+  const similarityThreshold = 0.7;
   if (dists[most_similar_index] < similarityThreshold) {
     const response_completion = await fetch(
       'https://llm.api.cloud.yandex.net/foundationModels/v1/completion',

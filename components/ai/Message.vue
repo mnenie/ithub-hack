@@ -10,7 +10,7 @@ const model = defineModel<string>();
 
 <template>
   <div class="relative flex w-full flex-col items-center">
-    <form @submit.prevent="emit('onSubmit')" class="relative w-full">
+    <form @submit.prevent="emit('onSubmit')" @keyup.enter="emit('onSubmit')" class="relative w-full">
       <UiTextarea
         v-model="model"
         placeholder="Напишити AI помощнику ваш вопрос"
