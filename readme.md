@@ -39,7 +39,6 @@
     Перейдите в директорию и запустите проект.
 
     ```sh
-    cd nuxt-markdown-blog-starter/
     npm install
     npm run dev
     ```
